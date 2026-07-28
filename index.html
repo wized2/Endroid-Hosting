@@ -767,22 +767,16 @@
     <script>
         // ===== CONFIGURATION =====
         const API_URL = 'https://e-host.xo.je/api.php';
-        const API_KEY = '23458901.hQ23458901.hQ'; // Matches backend
 
         // ===== DEBUG LOGS =====
         console.log('API_URL:', API_URL);
-        console.log('API_KEY:', API_KEY);
 
-        // ===== Helper: fetch with API key =====
+        // ===== Helper: fetch (no API key) =====
         async function apiFetch(endpoint, options = {}) {
             const url = API_URL + '?action=' + endpoint;
             console.log('Fetching:', url);
-            const headers = {
-                'X-API-Key': API_KEY,
-                ...(options.headers || {})
-            };
             try {
-                const response = await fetch(url, { ...options, headers });
+                const response = await fetch(url, { ...options });
                 console.log('Response status:', response.status);
                 if (!response.ok) {
                     const text = await response.text();
